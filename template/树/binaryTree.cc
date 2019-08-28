@@ -25,11 +25,28 @@ void insert(treeNode*& root, int val)
 }
 treeNode* minimum(treeNode* root)
 {
-    treeNode* x=root;
-    while(x&&x->left){
-        x=x->left;
+    treeNode* x = root;
+    while (x && x->left) {
+        x = x->left;
     }
     return x;
+}
+treeNode* deleteMin(treeNode* root)
+{
+    if (root->left == nullptr) {
+        treeNode* p = root->right;
+        delete root;
+        return p;
+    }
+    treeNode* pre = root;
+    treeNode* p = root;
+    while (p->left != nullptr) {
+        pre = p;
+        p = p->left;
+    }
+    pre->left = p->right;
+    delete p;
+    return root;
 }
 treeNode* remove(treeNode* root, int val)
 {
@@ -42,11 +59,15 @@ treeNode* remove(treeNode* root, int val)
         root->left == remove(root->left, val);
         return root;
     } else {
-        if(root->right==nullptr)
-            return root->left;
-        if(root->left==nullptr)
-            return root->right;
-        auto next=minimum(root->right);
+        if (root->left == nullptr || root->right == nullptr) {
+            treeNode* newRoot = (root->right == nullptr) ? root->left : root->right;
+            delete root;
+            return newRoot;
+        }
+        treeNode* nextNode = minimum(root->right);
+        root->val = nextNode->val;
+        root->right = deleteMin(root->right);
+        return root;
     }
 }
 
@@ -71,6 +92,6 @@ int main(int argc, char* argv[])
     for (auto x : a)
         insert(root, x);
     print(root);
-    remove(root, 10);
+    root=remove(root, 10);
     print(root);
 }
