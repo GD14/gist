@@ -23,6 +23,26 @@
    
 这里的operator new是可以重载的，比如A:operator new（size_t），如果我们没有重载，默认调用全局的operator new（内部可能是用malloc实现）,不要重载全局的operator new
 
+
+##glibc中free实现
+```c
+struct mem_control_block { 
+     int is_available; 
+     int size; 
+};
+
+void free(void *firstbyte) {
+     struct mem_control_block *mcb;
+/* Backup from the given pointer to find the
+  * mem_control_block
+  */
+    mcb = firstbyte - sizeof(struct mem_control_block);
+/* Mark the block as being available */
+   mcb->is_available = 1;
+/* That''s It!  We''re done. */
+   return;
+ }
+```
 ##什么是placement new
 ```cpp
 new(p) A()

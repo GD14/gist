@@ -1,12 +1,18 @@
 
 
 ```shell
-#查看所有连接状态
-netstat -na
-```
+#数字化
+netstat -n
+#所有
+netstat -a
+#tcp
+netstat -t
+#udp
+netstat -u
+#raw
+netstat -w
+#pid和程序名
+netstat -p
 
-
-```shell
-#查看所有tcp连接
-natstat -nat
-```
+#查看所有tcp连接状态
+netstat -natp

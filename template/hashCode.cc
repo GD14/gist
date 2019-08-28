@@ -17,7 +17,6 @@ unsigned int hashCode(const T& a)
     }
     return code;
 }
-class 
 
 int main(int argc, char* argv[])
 {

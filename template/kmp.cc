@@ -9,7 +9,7 @@ int strStr(string str, string substr)
     if (substr.empty())
         return 0;
 
-    vector<int> p(str.size(), 0);
+    vector<int> p(substr.size(), 0);
     int i = 0;
     int j = 0;
     for (i = 1; i < substr.size() - 1; i++) {
@@ -25,8 +25,7 @@ int strStr(string str, string substr)
             j = p[j];
         if (str[i] == substr[j])
             j = j + 1;
-        if (j == substr.size())
-        {
+        if (j == substr.size()) {
             return i + 1 - j;
         }
     }
