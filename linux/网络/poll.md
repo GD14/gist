@@ -17,6 +17,8 @@ poll 通过pollfd *数组解决了select文件描述符数量受限的问题，�
 当fd是nonblocking时候
     revent&(POLLIN|POLLPRI|POLLRDHUP)
 
+对端正常关闭（程序里close()，shell下kill或ctr+c），触发EPOLLIN和EPOLLRDHUP
+
 #什么时候写
 当fd是nonblocking时候
     revent&(POLLOUT)
