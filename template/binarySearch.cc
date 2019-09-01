@@ -27,7 +27,7 @@ int upper_bound(vector<int>&a,int first, int last,int target)
         {
             first=++i;
             count-=step+1;
-        }
+        }else count=step;
     }
     return first;
 }
