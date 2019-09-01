@@ -22,7 +22,7 @@ int main(int argc,char *argv[]){
        while(l<=r)
        {
            int m=(l+r)/2;
-           if(a[i]>f[m])
+           if(a[i]>=f[m])
            {
                l=m+1;
            }else if(a[i]<f[m])
